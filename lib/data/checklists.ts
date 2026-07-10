@@ -1,0 +1,78 @@
+import { AuditCategoryDef } from "../types";
+
+export const AUDIT_CATEGORIES: AuditCategoryDef[] = [
+  {
+    key: "asset",
+    title: "Asset Inventory Documentation",
+    shortTitle: "Asset Inventory",
+    icon: "🗂",
+    weight: 0.25,
+    items: [
+      { id: "a1", question: "Semua perangkat aktif tercatat di Asset Database?", weight: 15, reason: "Dasar dari seluruh sistem dokumentasi", tips: "Lakukan physical audit sebelum input" },
+      { id: "a2", question: "Setiap perangkat memiliki Merk/Model yang jelas?", weight: 10, reason: "Mempercepat pencarian spare part & manual", tips: "Catat dari label fisik perangkat" },
+      { id: "a3", question: "Setiap perangkat memiliki Lokasi fisik yang jelas?", weight: 10, reason: "Mempercepat troubleshooting on-site", tips: "Catat lantai, ruang, rak" },
+      { id: "a4", question: "Setiap perangkat memiliki Owner/PIC?", weight: 10, reason: "Memudahkan koordinasi saat ada masalah", tips: "Tentukan PIC per divisi/lokasi" },
+      { id: "a5", question: "Tanggal instalasi/pembelian tercatat?", weight: 10, reason: "Membantu perencanaan end-of-life perangkat", tips: "Cek invoice/label pembelian" },
+      { id: "a6", question: "Status perangkat (Aktif/Nonaktif/Cadangan) selalu update?", weight: 15, reason: "Mencegah dokumentasi \"hantu\"", tips: "Audit rutin tiap bulan" },
+      { id: "a7", question: "Update terakhir database kurang dari 30 hari?", weight: 10, reason: "Dokumentasi basi = tidak bisa dipercaya", tips: "Jadwalkan review bulanan" },
+      { id: "a8", question: "Ada proses onboarding dokumentasi untuk perangkat baru?", weight: 10, reason: "Mencegah perangkat baru tidak tercatat", tips: "Buat SOP input aset baru" },
+      { id: "a9", question: "Ada proses offboarding saat perangkat dilepas/diganti?", weight: 5, reason: "Mencegah data usang menumpuk", tips: "Arsipkan, jangan hapus histori" },
+      { id: "a10", question: "Backup Asset Database dilakukan berkala?", weight: 5, reason: "Mencegah kehilangan data inventaris", tips: "Backup mingguan ke Drive terpisah" },
+    ],
+  },
+  {
+    key: "topology",
+    title: "Topology & Diagram Documentation",
+    shortTitle: "Topology",
+    icon: "🗺",
+    weight: 0.25,
+    items: [
+      { id: "t1", question: "Diagram topologi jaringan tersedia & mudah diakses?", weight: 20, reason: "Fondasi pemahaman arsitektur jaringan", tips: "Gunakan draw.io/Lucidchart, link di sistem" },
+      { id: "t2", question: "Diagram mencakup seluruh lokasi/cabang?", weight: 15, reason: "Topologi parsial menyesatkan saat troubleshooting", tips: "Update tiap ada ekspansi lokasi baru" },
+      { id: "t3", question: "Hubungan antar perangkat (uplink/downlink) tercatat?", weight: 15, reason: "Penting untuk isolasi masalah koneksi", tips: "Catat di menu Topology Map" },
+      { id: "t4", question: "Diagram topologi diperbarui setelah perubahan jaringan?", weight: 15, reason: "Diagram basi lebih berbahaya dari tidak ada diagram", tips: "Jadikan bagian wajib dari SOP perubahan" },
+      { id: "t5", question: "Jalur redundansi/failover terdokumentasi?", weight: 10, reason: "Penting untuk disaster recovery planning", tips: "Tandai jalur backup di diagram" },
+      { id: "t6", question: "Versi diagram tersimpan dengan histori (versioning)?", weight: 10, reason: "Memudahkan rollback pemahaman jika ada kesalahan", tips: "Simpan versi lama sebelum overwrite" },
+      { id: "t7", question: "Legenda/simbol diagram konsisten & mudah dipahami?", weight: 5, reason: "Standar visual mempercepat pembacaan oleh siapapun", tips: "Gunakan simbol standar industri" },
+      { id: "t8", question: "Topologi logical (VLAN/IP) terpisah dari topologi fisik?", weight: 5, reason: "Kedua perspektif dibutuhkan untuk kasus berbeda", tips: "Buat 2 diagram terpisah" },
+      { id: "t9", question: "Diagram dapat diakses tim lain saat emergency?", weight: 5, reason: "Ketergantungan pada satu orang berisiko tinggi", tips: "Simpan di lokasi shared, bukan laptop pribadi" },
+    ],
+  },
+  {
+    key: "config",
+    title: "Configuration & Backup Documentation",
+    shortTitle: "Config & Backup",
+    icon: "⚙️",
+    weight: 0.30,
+    items: [
+      { id: "c1", question: "Konfigurasi tiap perangkat kritis terdokumentasi?", weight: 20, reason: "Konfigurasi hilang = downtime lama saat recovery", tips: "Export config ke text file berkala" },
+      { id: "c2", question: "Backup konfigurasi dilakukan rutin & terjadwal?", weight: 20, reason: "Backup manual sering terlupa", tips: "Gunakan script/automation backup" },
+      { id: "c3", question: "Lokasi file backup tercatat & mudah ditemukan?", weight: 15, reason: "Backup yang tidak ditemukan sama saja tidak ada", tips: "Standarkan folder & penamaan file" },
+      { id: "c4", question: "Versi firmware tiap perangkat tercatat?", weight: 10, reason: "Penting untuk kompatibilitas & keamanan", tips: "Update kolom saat firmware diupgrade" },
+      { id: "c5", question: "Backup diverifikasi bisa di-restore?", weight: 15, reason: "Backup rusak baru diketahui saat sudah terlambat", tips: "Uji restore berkala di lingkungan test" },
+      { id: "c6", question: "Kredensial akses perangkat disimpan terpisah?", weight: 10, reason: "Risiko keamanan jika dokumentasi bocor", tips: "Gunakan vault terenkripsi terpisah" },
+      { id: "c7", question: "Ada retensi backup (beberapa versi lama)?", weight: 5, reason: "Satu backup korup = tidak ada fallback", tips: "Simpan minimal 3 versi terakhir" },
+      { id: "c8", question: "Config kritis di-review setelah ada incident?", weight: 5, reason: "Bagian dari continuous improvement", tips: "Tambahkan catatan post-mortem" },
+    ],
+  },
+  {
+    key: "standard",
+    title: "Standard & Change Management",
+    shortTitle: "Standard & Change",
+    icon: "📋",
+    weight: 0.20,
+    items: [
+      { id: "s1", question: "Naming convention perangkat konsisten?", weight: 15, reason: "Memudahkan pencarian & sorting", tips: "Format: [Lokasi]-[Tipe]-[Nomor]" },
+      { id: "s2", question: "Format dokumentasi seragam di semua lokasi/cabang?", weight: 10, reason: "Memudahkan konsolidasi multi-lokasi", tips: "Gunakan template baku" },
+      { id: "s3", question: "Setiap perubahan tercatat di Change Log?", weight: 20, reason: "Penting untuk audit & investigasi masalah", tips: "Wajibkan entry Change Log sebelum perubahan live" },
+      { id: "s4", question: "Ada approval process sebelum perubahan besar?", weight: 15, reason: "Mencegah perubahan tidak sah/berisiko", tips: "Terapkan change request sederhana" },
+      { id: "s5", question: "Akses dokumentasi dibatasi (bukan open semua)?", weight: 10, reason: "Mencegah perubahan tidak sah pada dokumentasi", tips: "Gunakan permission/role access" },
+      { id: "s6", question: "Ada SOP tertulis untuk handover antar teknisi?", weight: 15, reason: "Mencegah hilangnya pengetahuan saat pergantian staf", tips: "Sertakan checklist handover" },
+      { id: "s7", question: "Review dokumentasi dijadwalkan rutin?", weight: 5, reason: "Mencegah dokumentasi jadi basi", tips: "Set reminder kalender" },
+      { id: "s8", question: "Ada label kritikalitas per perangkat?", weight: 5, reason: "Membantu prioritas saat incident", tips: "Tandai core device sebagai High" },
+      { id: "s9", question: "Kontak vendor/support terdokumentasi?", weight: 5, reason: "Mempercepat eskalasi saat masalah hardware/vendor", tips: "Catat di menu terpisah dengan nomor kontrak" },
+    ],
+  },
+];
+
+export const DEVICE_TYPES = ["Switch Core", "Switch Access", "Router", "Firewall", "Access Point", "Server", "Modem", "Lainnya"];

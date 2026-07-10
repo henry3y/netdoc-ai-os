@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --font-display: "Poppins", "Segoe UI", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: "Segoe UI", ui-sans-serif, system-ui, -apple-system, Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  background: #0b1016;
+  color: #e7edf3;
+  overscroll-behavior-y: none;
+}
+
+body {
+  font-family: var(--font-body), sans-serif;
+}
+
+::selection {
+  background: rgba(124, 92, 255, 0.35);
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid #7c5cff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* thin scrollbar for data tables */
+.scroll-thin::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: #25323f;
+  border-radius: 4px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* signature: oscilloscope-style trace line used behind gauges/headers */
+.signal-trace {
+  stroke-dasharray: 6 5;
+  animation: dash 3.5s linear infinite;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: -110;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.input-field {
+  width: 100%;
+  background: #1a2530;
+  border: 1px solid #25323f;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.55rem;
+  color: #e7edf3;
+  font-size: 13px;
+}
+.input-field:focus {
+  outline: 2px solid #7c5cff;
+  outline-offset: 1px;
+}
